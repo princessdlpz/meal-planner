@@ -1,3 +1,6 @@
-export type CategoryRes = {
-	meals: { strCategory: string }[];
+export type Category = {
+	idCategory: string;
+	strCategory: string;
+	strCategoryThumb: string;	
+    strCategoryDescription: string;
 };
