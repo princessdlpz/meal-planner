@@ -1,49 +1,91 @@
 <script lang="ts">
-	import { Button, Modal, Label, Input, Checkbox, Dropdown, DropdownItem, Radio } from 'flowbite-svelte';
-    import { ChevronDownOutline } from 'flowbite-svelte-icons';
-	
+	import { goto } from '$app/navigation';
+	import { mealState } from '$lib/state/meal.svelte';
+	import { redirect } from '@sveltejs/kit';
+	import { Button, Label, Modal, Radio, Select } from 'flowbite-svelte';
+
+
+	const weekday = [
+		{ value: 'monday', name: 'Monday' },
+		{ value: 'tuesday', name: 'Tuesday' },
+		{ value: 'wednesday', name: 'Wednesday' },
+		{ value: 'thursday', name: 'Thursday' },
+		{ value: 'friday', name: 'Friday' },
+		{ value: 'saturday', name: 'Saturday' },
+		{ value: 'sunday', name: 'Sunday' }
+	];
+
+  const meal = mealState()
+
+	function setMealPlan() {
+		if (!dayOfTheWeek || !mealTime) {
+			return;
+		}
+
+    
+		meal.updateMeals(dayOfTheWeek, mealTime, {
+			idMeal: recipe.idMeal,
+			strMeal: recipe.strMeal,
+			strMealThumb: recipe.strMealThumb
+
+      		});
+    defaultModal = false;
+
+     goto('/weekly');
+    
+	}
+
 	const { data } = $props();
-	const {recipe } = data;
+	const { recipe } = data;
 
-	const handleClick = (e) => {
-		e.preventDefault();
-		alert('Clicked on: ' + e.target);
-	};
 
-    let defaultModal = $state(false);
+	let defaultModal = $state(false);
+	let dayOfTheWeek = $state<string | undefined>();
+	let mealTime = $state<string | undefined>();
+ 
 </script>
 
-<div>{recipe.strMeal}</div>
-<img src={recipe.strMealThumb} alt="Meal Thumbnail" />
-<div>{recipe.strCategory}</div>
-<div>{recipe.strInstructions}</div>
-<div>{recipe.strArea}</div>
+<div>
+	<img src={recipe.strMealThumb} alt={recipe.strMeal} />
+	<h1>{recipe.strMeal}</h1>
+	<p><strong>Category:</strong> {recipe.strCategory}</p>
+	<p><strong>Area:</strong> {recipe.strArea}</p>
+	<p><strong>Instructions:</strong></p>
+	<p>{recipe.strInstructions}</p>
+	<p><strong>Ingredients:</strong></p>
+	<ul>
+		{#each Array.from({ length: 20 }, (_, i) => i + 1) as i}
+			{#if recipe[`strIngredient${i}` as never]}
+				<li>{recipe[`strIngredient${i}` as never]} - {recipe[`strMeasure${i}` as never]}</li>
+			{/if}
+		{/each}
+	</ul>
+	{#if recipe.strYoutube}
+		<p><strong>Video:</strong> <a href={recipe.strYoutube} target="_blank">Watch on YouTube</a></p>
+	{/if}
 
-<Button on:click={() => (defaultModal = true)}>Default modal</Button>
-<Modal title="Add Recipe to Weekly Meal Plan" bind:open={defaultModal} autoclose>
-    <Label for="recipe-name">Weekday</Label>
-    <Button> Select Weekday <ChevronDownOutline class="w-6 h-6 ms-2 text-white dark:text-white" /></Button>
-    <Dropdown>
-        <DropdownItem on:click={handleClick}>Monday</DropdownItem>
-        <DropdownItem on:click={handleClick}>Tuesday</DropdownItem>
-        <DropdownItem on:click={handleClick}>Wednesday</DropdownItem>
-        <DropdownItem on:click={handleClick}>Thursday</DropdownItem>
-        <DropdownItem on:click={handleClick}>Friday</DropdownItem>
-        <DropdownItem on:click={handleClick}>Saturday</DropdownItem>
-        <DropdownItem on:click={handleClick}>Sunday</DropdownItem>
-    </Dropdown>
-    <Label for="recipe-name">Time</Label>
-    <ul class="w-48 bg-white rounded-lg border border-gray-200 dark:bg-gray-800 dark:border-gray-600 divide-y divide-gray-200 dark:divide-gray-600">
-        <li><Radio class="p-3"  value="Breakfast">Breakfast</Radio></li>
-        <li><Radio class="p-3"  value="Lunch">Lunch</Radio></li>
-        <li><Radio class="p-3"  value="Dinner">Dinner</Radio></li>
-        
-      </ul>
+	<Button on:click={() => (defaultModal = true)}>Default modal</Button>
+	<Modal title="Add to Weekly Meal Plan" bind:open={defaultModal} autoclose={false} outsideclose>
+		<Label for="recipe-name">Weekday</Label>
+		<Select
+			id="select-underline"
+			underline
+			class="mt-2"
+			items={weekday}
+			bind:value={dayOfTheWeek}
+		/>
+		<Label for="recipe-name">Time</Label>
+		<ul
+			class="w-48 bg-white rounded-lg border border-gray-200 dark:bg-gray-800 dark:border-gray-600 divide-y divide-gray-200 dark:divide-gray-600"
+		>
+			<li><Radio class="p-3" bind:group={mealTime} value="Breakfast">Breakfast</Radio></li>
+			<li><Radio class="p-3" bind:group={mealTime} value="Lunch">Lunch</Radio></li>
+			<li><Radio class="p-3" bind:group={mealTime} value="Dinner">Dinner</Radio></li>
+		</ul>
 
-  <svelte:fragment slot="footer">
-    <Button on:click={() => alert('Handle "success"')}>I accept</Button>
-    <Button color="alternative">Decline</Button>
-  </svelte:fragment>
-</Modal>
-
-//create ui for displaying recipe details
+		<svelte:fragment slot="footer">
+			<Button on:click={setMealPlan}>Select</Button>
+			<Button color="alternative" on:click={() => (defaultModal = false)}>Close</Button>
+		</svelte:fragment>
+	</Modal>
+</div>

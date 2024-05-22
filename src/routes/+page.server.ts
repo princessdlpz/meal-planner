@@ -9,3 +9,4 @@ export async function load({ cookies }) {
 		return redirect(302, '/login');
 	}
 }
+

@@ -8,7 +8,7 @@ export async function load({ params, fetch }) {
 
 	const recipe = data.meals[0];
     
-	console.log(recipe);
+
 
 	return { mealId, recipe };
 }

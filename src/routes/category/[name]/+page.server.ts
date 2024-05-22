@@ -1,14 +1,7 @@
-import type { MealsByCategory } from '$lib/types/meal.js';
+import { getCategories } from '$lib/functions/categories.js';
 
-export async function load({ params, fetch }) {
+export function load({ params }) {
 	const { name } = params;
 
-	const res = await fetch('https://www.themealdb.com/api/json/v1/1/filter.php?c=' + name);
-	const data = await res.json();
-
-	const categories: MealsByCategory = data;
-
-	const meals = categories.meals;
-	
-	return { meals, name };
+	return getCategories(name);
 }

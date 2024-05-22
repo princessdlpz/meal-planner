@@ -13,7 +13,7 @@ export async function load({ cookies }) {
 
 export const actions = {
 	default: async function ({ request, cookies }) {
-		console.log('here');
+
 		const form = await superValidate(request, zod(loginSchema));
 		if (!form.valid) return fail(400, { form });
 
