@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Sidebar from './../../../components/Sidebar.svelte';
 	import { getCategories } from '$lib/functions/categories.js';
 	import { page } from '$app/stores';
 

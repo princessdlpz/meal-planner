@@ -20,11 +20,10 @@
 						class="w-64 h-64 mb-8 mr-10"
 					/>
 				</div>
-				<form method="POST" use:enhance={() => {
-					return async({result, update })=>{
-						if(result.status===302) update();
-					}
-				}}>
+				<form
+					method="POST"
+					use:enhance
+				>
 					<div class="relative w-full mb-4">
 						<Label for="username" class="block mb-2">Username</Label>
 						<ButtonGroup class="w-full">

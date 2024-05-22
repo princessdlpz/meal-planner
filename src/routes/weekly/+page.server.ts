@@ -5,3 +5,7 @@ export function load({ cookies }) {
 		return redirect(302, '/login');
 	}
 }
+
+
+export const ssr = false;
+export const csr = true;

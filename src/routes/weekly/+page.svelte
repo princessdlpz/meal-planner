@@ -9,8 +9,6 @@
 	}
 </script>
 
-{JSON.stringify(meals.meals, null, 2)}
-
 <div class="grid grid-col-7">
 	<div class="flex items-center ml-auto">
 		<DarkMode class="inline-block dark:hover:text-white hover:text-gray-900" />
