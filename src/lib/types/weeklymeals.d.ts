@@ -18,4 +18,5 @@ export type SelectedMeal = {
     idMeal: string
     strMeal: string
     strMealThumb: string
+    category: string
 }

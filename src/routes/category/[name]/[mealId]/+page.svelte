@@ -26,7 +26,8 @@
 		meal.updateMeals(dayOfTheWeek, mealTime, {
 			idMeal: recipe.idMeal,
 			strMeal: recipe.strMeal,
-			strMealThumb: recipe.strMealThumb
+			strMealThumb: recipe.strMealThumb,
+			category: recipe.strCategory,
 
       		});
     defaultModal = false;

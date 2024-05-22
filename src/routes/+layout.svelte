@@ -1,7 +1,10 @@
-<script>
+<script lang="ts">
 	import { goto, invalidateAll } from '$app/navigation';
 	import '../app.css';
+	import { page } from '$app/stores';
+	import type { PageData } from './$types';
 	import {
+		DarkMode,
 		Sidebar,
 		SidebarDropdownItem,
 		SidebarDropdownWrapper,
@@ -93,3 +96,46 @@
 		<slot />
 	</div>
 </div>
+
+<style>
+	.background {
+		background-color: #eee5c0;
+		background-size: cover;
+		background-position: center;
+		background-repeat: no-repeat;
+		background-attachment: fixed;
+		width: 100%;
+		height: 100%;
+	}
+
+	@media (max-width: 768px) {
+		.flex {
+			flex-direction: column;
+		}
+		.mr-10 {
+			margin-right: 0;
+		}
+		.mb-8 {
+			margin-bottom: 2rem;
+		}
+		.w-64 {
+			width: 100%;
+		}
+		.w-full {
+			width: 100%;
+		}
+		.m-4 {
+			margin: 1rem 0;
+		}
+		.px-5 {
+			padding-left: 1.25rem;
+			padding-right: 1.25rem;
+		}
+	}
+
+	@media (max-width: 1024px) {
+		.background {
+			background-size: contain;
+		}
+	}
+</style>
