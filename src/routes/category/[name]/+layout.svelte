@@ -3,6 +3,11 @@
 
 	const { data } = $props();
 	const { categories } = data;
+	let site = {
+		name: 'WeekEats',
+		href: '/weekly',
+		img: 'src/assets/WeekEats_logo.png'
+	};
 </script>
 
 <div class="h-full w-full flex flex-row">

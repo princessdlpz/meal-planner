@@ -10,9 +10,9 @@
 </script>
 
 <div class="grid grid-col-7">
-	<div class="flex items-center ml-auto">
+	<!-- <div class="flex items-center ml-auto">
 		<DarkMode class="inline-block dark:hover:text-white hover:text-gray-900" />
-	</div>
+	</div> -->
 
 	<div class="grid grid-cols-7 gap-4">
 		{#each ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'] as day}

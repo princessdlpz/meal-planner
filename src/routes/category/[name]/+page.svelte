@@ -1,13 +1,19 @@
 <script lang="ts">
-	import Sidebar from './../../../components/Sidebar.svelte';
 	import { getCategories } from '$lib/functions/categories.js';
 	import { page } from '$app/stores';
+	import { Heading } from 'flowbite-svelte';
 
 	const { data } = $props();
 	const { meals: _meals } = data;
 
-	let meals = $state(_meals);
+	let site = {
+		name: 'WeekEats',
+		href: '/weekly',
+		img: 'src/assets/WeekEats_logo.png'
+	};
 
+	let meals = $state(_meals);
+	
 	async function _getCategories(name: string) {
 		const { meals: _meals } = await getCategories(name);
 		meals = _meals;
@@ -18,14 +24,9 @@
 	});
 </script>
 
+<Heading tag="h2" class="mb-4">{$page.params.name} Meals </Heading>
+
 <div class="grid grid-cols-4 gap-4">
-	<div class="col-span-4">
-		<input
-			type="text"
-			placeholder="Search meals..."
-			class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-		/>
-	</div>
 
 	{#each meals as Meal}
 		<a

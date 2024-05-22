@@ -17,19 +17,20 @@
 		ChevronDoubleUpOutline,
 		SearchOutline
 	} from 'flowbite-svelte-icons';
+
 	import '../app.css';
+	import WeekEatsLogo from '../assets/WeekEats_logo.png';
 
 	const { categories }: { categories: Category[] } = $props();
 
 	let site = {
 		name: 'WeekEats',
 		href: '/weekly',
-		img: 'src/assets/WeekEats_logo.png'
+		img: WeekEatsLogo
 	};
 
 	function logout() {
 		fetch('/api/logout', { method: 'POST' });
-
 		goto('/login');
 	}
 </script>
