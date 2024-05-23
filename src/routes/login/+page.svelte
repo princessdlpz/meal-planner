@@ -3,11 +3,11 @@
 	import { Label, Input, InputAddon, ButtonGroup } from 'flowbite-svelte';
 	import { UserCircleSolid, LockSolid } from 'flowbite-svelte-icons';
 	import { superForm } from 'sveltekit-superforms';
-	import backgroundImage from '$assets/mesh704.png';
-	import food from '$assets/food.jpg';
-	import WeekEats_transparent from '$assets/WeekEats_transparent.png';
+	import food from '../../assets/food.jpg';
+	import WeekEats_transparent from '../../assets/WeekEats_transparent.png';
 	const { data } = $props();
 	const { form, constraints } = superForm(data.form);
+	
 </script>
 
 <div class="container mx-auto px-4 h-full">

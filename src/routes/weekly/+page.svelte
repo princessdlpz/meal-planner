@@ -8,6 +8,7 @@
 	function getMeal(day: string, mealTime: string): SelectedMeal {
 		return meals.meals[day.toLowerCase() as never][mealTime];
 	}
+	
 </script>
 
 
