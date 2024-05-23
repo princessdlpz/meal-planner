@@ -112,7 +112,7 @@
 		</Card>
 	</div>
 
-	<div class="col-start-4 mr-20">
+	<div class="col-start-4 mr-10">
 		<Card class="text-left" size="xl" padding="xl">
 			<Heading tag="h4" class="mb-4"><strong>Instructions:</strong></Heading>
 			<P class="mb-4">{recipe.strInstructions}</P>
