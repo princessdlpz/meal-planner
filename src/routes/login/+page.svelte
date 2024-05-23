@@ -3,6 +3,8 @@
 	import { Label, Input, InputAddon, ButtonGroup } from 'flowbite-svelte';
 	import { UserCircleSolid, LockSolid } from 'flowbite-svelte-icons';
 	import { superForm } from 'sveltekit-superforms';
+	import backgroundImage from '$assets/mesh704.png';
+	import WeekEats_transparent from '$assets/WeekEats_transparent.png';
 	const { data } = $props();
 	const { form, constraints } = superForm(data.form);
 </script>
@@ -14,16 +16,9 @@
 				class="relative flex flex-col min-w-3 break-words w-full mb-6 shadow-lg border-0 p-6 rounded-2xl background"
 			>
 				<div class="flex justify-center">
-					<img
-						src={'src/assets/WeekEats_transparent.png'}
-						alt="Logo"
-						class="w-64 h-64 mb-8 mr-10"
-					/>
+					<img src={WeekEats_transparent} alt="Logo" class="w-64 h-64 mb-8 mr-10" />
 				</div>
-				<form
-					method="POST"
-					use:enhance
-				>
+				<form method="POST" use:enhance>
 					<div class="relative w-full mb-4">
 						<Label for="username" class="block mb-2">Username</Label>
 						<ButtonGroup class="w-full">
@@ -72,7 +67,7 @@
 
 <style>
 	.background {
-		background-image: url('src/assets/mesh-704.png');
+		background-color: #F4F7F2;
 		background-size: cover;
 		background-position: center;
 		background-repeat: no-repeat;

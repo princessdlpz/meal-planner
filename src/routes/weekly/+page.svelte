@@ -1,8 +1,7 @@
 <script lang="ts">
-	import { get } from 'svelte/store';
 	import type { SelectedMeal } from '$lib/types/weeklymeals';
 	import { mealState } from '$lib/state';
-	import { DarkMode, Img, A, Heading } from 'flowbite-svelte';
+	import { Img, A, Heading } from 'flowbite-svelte';
 	const meals = mealState();
 
 	function getMeal(day: string, mealTime: string): SelectedMeal {
