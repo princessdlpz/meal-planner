@@ -4,19 +4,21 @@
 	import { UserCircleSolid, LockSolid } from 'flowbite-svelte-icons';
 	import { superForm } from 'sveltekit-superforms';
 	import backgroundImage from '$assets/mesh704.png';
+	import food from '$assets/food.jpg';
 	import WeekEats_transparent from '$assets/WeekEats_transparent.png';
 	const { data } = $props();
 	const { form, constraints } = superForm(data.form);
 </script>
 
 <div class="container mx-auto px-4 h-full">
+	<img src={food} alt="Background" class="absolute top-0 left-0 w-full h-full object-cover brightness-75" />
 	<div class="flex content-center items-center justify-center h-full">
 		<div class="w-full lg:w-4/12 px-4">
 			<div
 				class="relative flex flex-col min-w-3 break-words w-full mb-6 shadow-lg border-0 p-6 rounded-2xl background"
 			>
 				<div class="flex justify-center">
-					<img src={WeekEats_transparent} alt="Logo" class="w-64 h-64 mb-8 mr-10" />
+					<img src={WeekEats_transparent} alt="Logo" class="w-80 h-70" />
 				</div>
 				<form method="POST" use:enhance>
 					<div class="relative w-full mb-4">
