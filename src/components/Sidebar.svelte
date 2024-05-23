@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 	import type { Category } from '$lib/types';
+	import { navigate } from 'svelte-routing';
 	import {
 		Sidebar,
 		SidebarBrand,
@@ -29,8 +30,8 @@
 		img: WeekEatsLogo
 	};
 
-	function logout() {
-		fetch('/api/logout', { method: 'POST' });
+	async function logout() {
+		await fetch('/api/logout', { method: 'POST' });
 		goto('/login');
 	}
 </script>
@@ -68,13 +69,7 @@
 				</SidebarDropdownWrapper>
 			</SidebarGroup>
 			<SidebarGroup border>
-				<SidebarItem
-					label="Logout"
-					on:click={() => {
-						fetch('/api/logout', { method: 'POST' });
-						goto('/login');
-					}}
-				>
+				<SidebarItem label="Logout" on:click={() => logout()}>
 					<svelte:fragment slot="icon">
 						<ArrowRightToBracketOutline
 							class="w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"

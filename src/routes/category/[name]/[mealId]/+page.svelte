@@ -54,11 +54,19 @@
 	let mealTime = $state<string | undefined>();
 </script>
 
-<div class="recipe-container">
-	<Heading tag="h1" class="mb-4" customSize="text-4xl font-extrabold" position="justify-center">
+<div class="text-center">
+	<Heading tag="h1" class="mb-4" customSize="text-8xl font-extrabold">
 		{recipe.strMeal}
 	</Heading>
+
+	<Heading tag="h4"
+		><strong>Category:</strong>
+		{recipe.strCategory}, <strong>Area:</strong>
+		{recipe.strArea}</Heading
+	>
+	<br />
 </div>
+
 <Img
 	src={recipe.strMealThumb}
 	alt={recipe.strMeal}
@@ -67,7 +75,7 @@
 	class="recipe-image"
 	position="justify-center"
 />
-<Button size="xs" on:click={() => (defaultModal = true)}>Add to Weekly Meal Plan</Button><br />
+<Button color="green" size="xl" on:click={() => (defaultModal = true)}>Add to Weekly Meal Plan</Button><br />
 <Modal title="Add to Weekly Meal Plan" bind:open={defaultModal} autoclose={false} outsideclose>
 	<Label for="weekday-select">Weekday</Label>
 	<Select id="weekday-select" underline class="mt-2" items={weekday} bind:value={dayOfTheWeek} />
@@ -87,10 +95,6 @@
 </Modal>
 <br />
 
-<Heading tag="h4"><strong>Category:</strong> {recipe.strCategory}</Heading>
-<Heading tag="h4"><strong>Area:</strong> {recipe.strArea}</Heading>
-<br />
-
 <div class="grid grid-cols-2 items-center">
 	<div class="col-start-1 col-span-3">
 		<Card class="text-left inline-flex" size="sm" padding="xl">
@@ -108,7 +112,7 @@
 		</Card>
 	</div>
 
-	<div class="col-start-4 mr-20 ">
+	<div class="col-start-4 mr-20">
 		<Card class="text-left" size="xl" padding="xl">
 			<Heading tag="h4" class="mb-4"><strong>Instructions:</strong></Heading>
 			<P class="mb-4">{recipe.strInstructions}</P>
@@ -116,8 +120,7 @@
 	</div>
 </div>
 
-<br/>
-
+<br />
 
 {#if recipe.strYoutube}
 	<Heading tag="h4">Video:</Heading>
@@ -127,5 +130,3 @@
 {:else}
 	<p>No Youtube Video Available</p>
 {/if}
-
-
